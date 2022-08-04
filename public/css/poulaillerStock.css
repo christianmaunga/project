@@ -1,0 +1,17 @@
+
+.infoStock{
+   
+  width: 50%;
+  float:left;
+  line-height: 4;
+  
+}
+
+.button{
+   
+ 
+  width: 50%; 
+  float:right;
+  line-height: 4;
+  text-align: left;
+}
