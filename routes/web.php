@@ -52,7 +52,7 @@ Route::prefix('admin')->group(function(){
 });
 
 //stock
-Route::prefix('/stock')->group(function(){
+Route::prefix('/stock')->group(function(){ 
 
         Route::get('/login',[App\Http\Controllers\Auth\StockLoginController::class,'showLoginForm'])->name('stock.login');
         Route::post('/login',[App\Http\Controllers\Auth\StockLoginConTroller::class,'Login'])->name('stock.login.submit');

@@ -46,6 +46,7 @@ class StockController extends Controller
         ///
         $productName=$request->nom;
         $manufacturer=$request->fabricant;
+        
 
 
         $check = DB::table('table_of_products')
@@ -56,10 +57,13 @@ class StockController extends Controller
 
         if(is_null($check)){
             
+            // if a product (as name and manufacturer) already exists 
+            
 
             $product->product_name=$request->nom;
         
             $product->manufacturer_name=$request->fabricant;
+            $product->stockID=$request->stockID;
 
             $product->save();
 
@@ -77,10 +81,6 @@ class StockController extends Controller
             $product_added->prixtotal=$request->prixtotal;
 
             $product_added->dateExpiration=$request->dateExpiration;  
-
-            $product_added->mesure=$request->mesure;
-
-            $product_added->quantity=$request->quantity;
                     
             $product_added->comment=$request->comment;
 
@@ -98,19 +98,9 @@ class StockController extends Controller
         
 
         }else {
-
            
-            //return $sql;
-       
-                // $fk_id=intval($sql);
-                // return $fk_id;
-                 
-            
-            // $product_name=$request->nom;
-            // $manufacturer_name= $request->fabricant;
-            // $query=DB::select("SELECT id FROM table_of_products WHERE product_name ='$product_name'AND manufacturer_name='$manufacturer_name'  ");
-            // $Intvalue=intval($query);
-            // return $Intvalue;
+           //new product in database
+           // ins
             
             $check1 = DB::table('table_of_products')
             ->where('product_name', '=',$request->nom)
@@ -121,15 +111,7 @@ class StockController extends Controller
            // print_r($array);
 
             foreach ($check1 as $key ) {
-                // return $check1->id;
-            
-             
-           // return gettype($array); 
-           // return $check1[0];
 
-         
-
-            //$integerIDs = array_map('intval', explode(',', $sql));
                 
                             $product_added->product_id=$key->id;
                             
@@ -144,10 +126,6 @@ class StockController extends Controller
                             $product_added->prixtotal=$request->prixtotal;
 
                             $product_added->dateExpiration=$request->dateExpiration;  
-
-                            $product_added->mesure=$request->mesure;
-
-                            $product_added->quantity=$request->quantity;
                                     
                             $product_added->comment=$request->comment;
 
@@ -170,8 +148,15 @@ class StockController extends Controller
 
     }
 
+    function displayProduct() {
+        //$getAllProduct=();
+    
+    }
+
     function getretreiveview($id){
-        $product=DB::select("SELECT * FROM product_stocks WHERE StockID='$id'");
+        $product=DB::select("SELECT * FROM table_of_products WHERE StockID='$id'");
         return view('stock/retreiveproduct');
     }
+
+
 }

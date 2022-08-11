@@ -62,7 +62,7 @@ $(document).ready(function () {
         var prix = $("input[id='prix']").val();
         var number = $("input[id='nombre']").val();
 
-        $("#prixtotal").val(prix * number);
+        $("#prixtotal").val(prix * number).required;
     });
 
     // $("input[type='number']").each(function(){

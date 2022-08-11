@@ -15,6 +15,7 @@ class Products extends Model
       
         'product_name',
         'manufacturer_name',
+        'stockID',
          
     ];
 }

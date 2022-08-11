@@ -14,35 +14,35 @@
               
 
                 <label for="">Nom du produit</label>         
-                <input type="text" class="form-control " name="nom"  min="100" id="quantity" style="width: 50%;" required><br>
+                <input type="text" class="form-control " name="nom"  min="100" id="ProductName" name="name" style="width: 50%;" required><br>
 
               </div>      
 
             <div class="form-group  " >  
 
                 <label for="">Prix</label>         
-                <input type="numbre" class="form-control " name=""  min="100" id="quantity" style="width: 50%;" readonly required><br>
+                <input type="numbre" class="form-control " name=""  min="100" id="ProductPrice" name="ProductPrice" style="width: 50%;" readonly required><br>
 
             </div>
 
             <div class="form-group  " >  
 
               <label for="">Produits restants</label>         
-              <input type="number" class="form-control " name=""  min="100" id="quantity" style="width: 50%;" readonly required><br>
+              <input type="number" class="form-control " name=""  min="100" id="RemaingProduck" name="RemaingProduck" style="width: 50%;" readonly required><br>
 
             </div>
 
             <div class="form-group " >  
 
-              <label for="">Produit pris</label>         
-              <input type="text" class="form-control " name=""  min="100" id="quantity" style="width: 50%;" required><br>
+              <label for="">Produit rétiré</label>         
+              <input type="text" class="form-control " name=""  min="100" id="TakenProducts" name="TakenProducts" style="width: 50%;" required><br>
 
             </div>
 
             <div class="form-group " >  
 
               <label for="">Valeur des produits pris</label>         
-              <input type="text" class="form-control " name=""  min="100" id="quantity" style="width: 50%;" readonly required><br>
+              <input type="text" class="form-control " name=""  min="100" id="total_price_of_takenProducts" name="total_price_of_takenProducts" style="width: 50%;" readonly required><br>
 
             </div>
 
