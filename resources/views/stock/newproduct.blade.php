@@ -1,10 +1,26 @@
 @extends('layouts.app')
 @section('content')
 <link rel="stylesheet" href="/css/addproduct.css">
-<script src="/js/addproduct.js"></script>
+<script src="{{ asset('js/addproduct.js') }}"></script>
+
+
+<!--DATEPICKER STYLING-->
+<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.min.js" integrity="sha256-VazP97ZCwtekAsvgPBSUwPFKdrwD3unUfSGVYrahUqU=" crossorigin="anonymous"></script>
+
+
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="//code.jquery.com/ui/1.13.2/themes/base/jquery-ui.css">
+  <!-- <link rel="stylesheet" href="/resources/demos/style.css"> -->
+
+  <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+  <script src="https://code.jquery.com/ui/1.13.2/jquery-ui.js"></script>
+  <script src="{{ asset('jqueryui/jquery-ui.js') }}"></script>
+
+
 <div class="container">
   <h2>Nouveau produit</h2>
-  
+  <a href="{{Route('stock.dashboard')}}" class="btn btn-primary" style='float:right;'>Accueill</a><br><br>
 @if(session()->has('message'))
 
 <div class="alert alert-success">
@@ -13,7 +29,7 @@
 
 @endif
 
-<form action="{{Route('stock.newproduct')}}" method="post" name="product" >
+<form action="{{Route('stock.newproduct')}}" method="post" name="product"  autocomplete="off" >
   @csrf
 <div id="show_item">
   <div class="row" style="margin-top:10px">
@@ -30,14 +46,14 @@
           <div class="col-md-2 mb-3">
 
             <label for="">Fabricant</label>
-            <input type="text" name="fabricant" id="fabricant" class="form-control"  required> 
+            <input type="text" name="fabricant" id="fabricant" class="form-control" required> 
 
           </div>
 
           <div class="col-md-2 mb-3">
 
             <label for="">Prix</label>
-            <input type="number" name="prix" id="prix"  min='1'  class="form-control"  required> 
+            <input type="number" name="prix" id="prix"  min='1'  class="form-control"   required> 
 
           </div>
 
@@ -58,7 +74,7 @@
           <div class="col-md-2 mb-3">
 
             <label for="">Date d'expiration</label>
-            <input type="date" name="dateExpiration" id="date" class="form-control"  required> 
+            <input name="dateExpiration" id="date" class="form-control" readonly  required> 
 
           </div>
 
@@ -97,7 +113,14 @@
     <button class="btn btn-success" style='float:right;'>Enregistrer</button><br>
     
     </form>
+
+
+    <div id="panels">
+
+
   </div>
+  
+
 
 <!-- <form action="{{Route('stock.newproduct')}}" method="post"> -->
   <!-- @csrf -->

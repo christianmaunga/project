@@ -11,8 +11,8 @@
   @endif
 
 
-<a href="{{Route('stock.addNewproduct')}}" class="btn btn-primary">Ajouter Nouveau produit</a>
-<a href="{{Route('stock.retreiveproduct',Auth::user()->id)}}" class="btn btn-danger" style="float: right;"> retirer produit</a>
+<a href="{{Route('stock.addNewproduct')}}" class="btn btn-primary">Ajouter produit</a>
+<a href="{{Route('stock.retreiveProductView')}}" class="btn btn-danger" style="float: right;"> retirer produit</a>
 
 <div class="row" style="margin-top: 50px;">
 

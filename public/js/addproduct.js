@@ -58,12 +58,20 @@ $(document).ready(function () {
     //     });
     // });
 
-    $("input[type='number']").on("change", function () {
+    $("input[type='number']").keyup("change", function () {
         var prix = $("input[id='prix']").val();
         var number = $("input[id='nombre']").val();
 
         $("#prixtotal").val(prix * number).required;
     });
+
+    $('#date').datepicker({
+        changeYear:true,
+		changeMonth:true,
+        maxDate:new Date(2026,8,25),
+		minDate:'today'
+    })
+    
 
     // $("input[type='number']").each(function(){
 

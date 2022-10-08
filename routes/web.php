@@ -59,7 +59,11 @@ Route::prefix('/stock')->group(function(){
         Route::get('/',[App\Http\Controllers\StockConTroller::class, 'index'])->name('stock.dashboard');
         Route::get('/addproduct',[App\Http\Controllers\StockController::class,'addNewProduct'])->name('stock.addNewproduct');
         Route::post('/insertproduct',[App\Http\Controllers\StockController::class,'insertProduct'])->name('stock.newproduct');
-        Route::get('/retreiveproduct/{id}',[App\Http\Controllers\StockController::class,'getretreiveview'])->name('stock.retreiveproduct');
+        Route::get('/retreiveProductview',[App\Http\Controllers\StockController::class,'getretreiveview'])->name('stock.retreiveProductView');
+        //jquery fetch data from the DB
+        Route::get('/dataloading/{stockId}',[App\Http\Controllers\StockController::class,'DataLiveSearch'])->name('stock.productsearch');
+        Route::post('/TransfertProductCollected', [App\Http\Controllers\StockController::class,'TransfertProduct'])->name('stock.transfertProduct');
+
 });
 
 //pharma

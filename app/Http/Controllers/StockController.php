@@ -57,7 +57,7 @@ class StockController extends Controller
 
         if(is_null($check)){
             
-            // if a product (as name and manufacturer) already exists 
+            // if the product doesn't exits in the system already do the following
             
 
             $product->product_name=$request->nom;
@@ -89,7 +89,7 @@ class StockController extends Controller
             
 
             if($save_product_delails){
-                return  redirect()->back()->with('message','Produit enregistré');
+                return  redirect()->back()->with('message','Le nouveau produit '.$productName.' a été  enregistré');
               }else{
                   return  redirect()->back()->with('message',' Erreur');
               }
@@ -99,7 +99,7 @@ class StockController extends Controller
 
         }else {
            
-           //new product in database
+           //if a product that has the same name and the same manufacturer exists in the system
            // ins
             
             $check1 = DB::table('table_of_products')
@@ -132,7 +132,8 @@ class StockController extends Controller
                             $save=$product_added->save();
 
                     if($save){
-                        return  redirect()->back()->with('message','Produit enregistré');
+                        return  redirect()->back()->with('message', 'Ajout des '.$request->nombre.' '.$productName.' ajoutés avec succès
+                        ');
                       }else{
                           return  redirect()->back()->with('message',' Erreur');
                       }
@@ -153,10 +154,25 @@ class StockController extends Controller
     
     }
 
-    function getretreiveview($id){
-        $product=DB::select("SELECT * FROM table_of_products WHERE StockID='$id'");
-        return view('stock/retreiveproduct');
+    function getretreiveview(){
+
+      return view('stock/retreiveproduct');
+      
     }
 
+
+    public function DataLiveSearch ($stockId){
+   
+
+        $product_=DB::select("SELECT table_of_products.product_name, product_added.number, product_added.remaining ,product_added.price 
+        FROM product_added, table_of_products 
+        WHERE product_added.product_id= table_of_products.id  AND product_added.remaining > 0 AND product_added.stock_id='$stockId'");
+         return response()->json($product_);
+        
+    }
+
+    function TransferredProduct(){
+
+    }
 
 }
