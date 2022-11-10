@@ -1,6 +1,18 @@
 @extends('layouts.app')
 
 @section('content')
+<style>
+  th{
+    font-size: 20px;
+  }
+
+table {
+  
+  border-radius: 10px;
+}
+
+</style>
+
 <div class="container">
    @if(session()->has('message'))
 
@@ -17,45 +29,68 @@
 <div class="row" style="margin-top: 50px;">
 
     <div class="col-sm">
-     Produits ajouter récement
-     <table class="table" style="background-color:rgb(146, 247, 247);">
-       
+     
+
+      <h2><p>Produits récement ajouter | <a href="{{Route('stock.AddedData')}}">voir plus...</a></p></h2>
+     <table class="table table-striped" style="background-color:rgb(146, 247, 247);">
+    
        <thead>
          
            <th>Nom</th>
-            <th>nombre()</th>
-            <th>jour d'ajout</th>
+            <th>#Nombre</th>
+            <th>Jour & Heure d'ajout</th>
          
        </thead>
-       <tbody>
+       <?php
+        
+
+          foreach($addedProducts as $row){
+
+            
+        ?>
+       
          <tr>
-           <td>blablablq</td>
-           <td>5</td>
-           <td>le 5/03/2022</td>
+           <td>{{$row->product_name}}</td>
+           <td>{{$row->number}}</td>
+           <td>{{ date('d,M,Y à H:i:s',strtotime($row->created_at))}}</td>
          </tr>
-       </tbody>
+       
+       <?php
+          }
+       ?>
      </table>
 
     </div>
     <div class="col-sm">
-      Produit retirer récement
 
-    <table class="table" style="background-color:#fc8181;">
+      <h2><p>Produit récement retirer | <a href="{{Route('stock.RetreivedData')}}">voir plus...</a></p></h2>
+    
+    <table class="table table-striped" style="background-color:#fc8181;">
       <thead>
          
            <th>Nom</th>
-            <th>nombre</th>
-            <th>jour de retrait</th>
+            <th>#nombre</th>
+            <th>Jour & Heure  de retrait</th>
 
        </thead>
-       <tbody>
+       <?php
+        
+
+          foreach($retreivedProducts as $row1){
+
+            
+        ?>
+       
        <tr>
-           <td>blablablq</td>
-           <td>5</td>
-           <td>le 5/03/2022</td>
+           <td>{{$row1->product_name}}</td>
+           <td>{{$row1->productNumbers}}</td>
+           <td>{{ date('d,M,Y à H:i:s',strtotime($row1->created_at))}}</td>
          </tr>
 
-       </tbody>
+       
+       <?php
+          }
+       ?>
      </table>
 
     </div>

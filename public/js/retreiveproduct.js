@@ -44,7 +44,8 @@ $(document).ready(function(){
                     onAutocomplete:function(reqdata){
                         console.log(reqdata)
                         $('#price').val(dataProd2[reqdata]["price"]);
-                        $('#remaing_products').val(dataProd2[reqdata]["remaining"]);
+                        $('#remaing_products').val(dataProd2[reqdata]["totalInStock"]);
+                        $('#product_id').val(dataProd2[reqdata]["id"]);
 
 
                     //      var price=$('#price').val(dataProd2[reqdata]["price"]);

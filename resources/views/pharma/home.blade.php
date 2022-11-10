@@ -1,23 +1,28 @@
 @extends('layouts.app')
 
 @section('content')
+<link rel="stylesheet" href="{{ asset('css/pharmadashboard.css') }}">
 <div class="container">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card">
-                <div class="card-header">{{ __('Dashboard') }}</div>
 
-                <div class="card-body">
-                    @if (session('status'))
-                        <div class="alert alert-success" role="alert">
-                            {{ session('status') }}
-                        </div>
-                    @endif
+    <div class="  left">
 
-                    {{ __('You are logged in as a pharma!') }}
-                </div>
-            </div>
-        </div>
+        <p>left</p>
+
     </div>
+
+
+    <div class=" right">
+
+            <a href=""><div class="sell">
+                <p>vendre</p>
+            </div></a>
+
+            <a href=""><div class="historic">
+                <p>historic</p>
+            </div></a>
+
+    </div>
+   
+
 </div>
 @endsection

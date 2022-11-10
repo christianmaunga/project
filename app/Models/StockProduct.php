@@ -20,8 +20,6 @@ class StockProduct extends Model
         'remaing',
         'prixtotal',
         'dateExpiration',
-        //'mesure',
-        //'quantity',
         'comment',
         'created_at	',
         'updated_at',

@@ -60,9 +60,14 @@ Route::prefix('/stock')->group(function(){
         Route::get('/addproduct',[App\Http\Controllers\StockController::class,'addNewProduct'])->name('stock.addNewproduct');
         Route::post('/insertproduct',[App\Http\Controllers\StockController::class,'insertProduct'])->name('stock.newproduct');
         Route::get('/retreiveProductview',[App\Http\Controllers\StockController::class,'getretreiveview'])->name('stock.retreiveProductView');
+       
         //jquery fetch data from the DB
         Route::get('/dataloading/{stockId}',[App\Http\Controllers\StockController::class,'DataLiveSearch'])->name('stock.productsearch');
-        Route::post('/TransfertProductCollected', [App\Http\Controllers\StockController::class,'TransfertProduct'])->name('stock.transfertProduct');
+        
+        Route::post('/TransfertProductCollected', [App\Http\Controllers\StockController::class,'TransferredProduct'])->name('stock.transfertProduct');
+        Route::get('/addedProduct',[App\Http\Controllers\StockController::class,'AddedData'])->name('stock.AddedData');
+        Route::get('/retrievedProduct',[App\Http\Controllers\StockController::class,'RetreivedData'])->name('stock.RetreivedData');
+        Route::get('/historic/{id}',[App\Http\Controllers\StockController::class,'historicAdded'])->name('stock.historic');
 
 });
 

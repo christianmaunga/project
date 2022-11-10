@@ -19,6 +19,7 @@ class CreateTableOfProductsTable extends Migration
             $table->string('product_name');
             $table->string('manufacturer_name');
             $table->integer('stockID');
+            $table->integer('totalInStock');
             $table->timestamps();
         });
     }

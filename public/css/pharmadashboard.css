@@ -1,0 +1,42 @@
+body{
+  padding: 50px;
+
+}
+.left{
+
+ background-color: rgb(99, 234, 99); 
+ width: 45%; 
+ float:left;
+ height: 600px;
+ padding: 50px;
+ border: 1px solid black;
+ 
+}
+
+.right{
+  background-color: rgb(255, 193, 8); 
+  width: 50%; 
+  float:right;
+  height: 600px;
+  padding: 50px;
+ 
+  border: 1px solid black;
+}
+
+.sell{
+  height: 30%;
+    background-color: rgb(12, 100, 141);
+    padding: 100px;
+    border: 1px solid black;
+    margin-bottom: 5%;
+}
+.historic{
+  height: 30%;
+  background-color: rgb(139, 16, 137);
+  padding: 100px;
+  border: 1px solid black;
+}
+
+p{
+
+}
