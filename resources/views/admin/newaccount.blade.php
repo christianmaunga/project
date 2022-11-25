@@ -3,6 +3,11 @@
 @section('content')
 
 <div class="container">
+@if(session()->has('message'))
+                <div class="alert alert-success">
+                    {{ session()->get('message') }}
+                </div>
+            @endif
     <h2>Nouveau compte</h2>
 
     <div class="card-body"">

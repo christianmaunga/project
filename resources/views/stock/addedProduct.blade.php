@@ -2,6 +2,16 @@
 
 @section('content')
 
+<style>
+  a{
+  text-decoration: none;
+}
+a:hover {
+  text-decoration:underline;
+}
+</style>
+
+<title>Stock | List</title>
 <link rel="stylesheet" href="">
 
 <div class="container">
@@ -28,7 +38,7 @@
 
       <td>{{$row->product_name}}</td>
       <td>{{$row->totalInStock}}</td>
-      <td><a href="{{Route('stock.historic',['id' => $row->id])}}">historique </a></td>
+      <td><a href="{{Route('stock.historic',['id' => $row->product_id])}}">historique </a></td>
 
     </tr>
     <?php

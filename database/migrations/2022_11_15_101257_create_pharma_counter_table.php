@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTableOfProductsTable extends Migration
+class CreatePharmaCounterTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,16 +13,15 @@ class CreateTableOfProductsTable extends Migration
      */
     public function up()
     {
-        if(!Schema::hasTable('table_of_products')){
-        Schema::create('table_of_products', function (Blueprint $table) {
+        Schema::create('pharma_counter', function (Blueprint $table) {
             $table->id();
-            $table->string('product_name');
-            $table->string('manufacturer_name');
-            
+            $table->integer('product_id');
+            $table->integer('pharma_id');
+            $table->integer('stock_id');
+            $table->integer('number');
             $table->timestamps();
         });
     }
-}
 
     /**
      * Reverse the migrations.
@@ -31,6 +30,6 @@ class CreateTableOfProductsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('table_of_products');
+        Schema::dropIfExists('pharma_counter');
     }
 }

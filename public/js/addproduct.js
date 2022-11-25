@@ -65,149 +65,74 @@ $(document).ready(function () {
         $("#prixtotal").val(prix * number).required;
     });
 
-    $('#date').datepicker({
-        changeYear:true,
-		changeMonth:true,
-        maxDate:new Date(2026,8,25),
-		minDate:'today'
-    })
+    // $('#date').datepicker({
+    //     changeYear:true,
+	// 	changeMonth:true,
+    //     maxDate:new Date(2026,8,25),
+	// 	minDate:'today'
+    // })
     
 
-    // $("input[type='number']").each(function(){
 
-    //   var prix=$('#prix').val();
-    //   var number=$('#nombre').val();
 
-    //   $(this).on('change',function(){
+    $.ajax({
 
-    //     $('#prixtotal').val(prix*number);
+        type:'GET',
 
-    //   })
-    // })
+        url:'/stock/searchProductName/',
 
-    // $("input[type='number']").on('change', function(){
+         encode  : true,
 
-    //   var prix=$('#prix').val();
-    //    var number=$('#nombre').val();
+        success:function(response){
+             
+                console.log(response)
+                //material css
 
-    //     $('#prixtotal').val(prix*number);
+                     //convert array to object
 
-    //  });
+                     //store the object in ProdArray
+                     var ProdArray=response;
 
-    //  $("").on('change', function(){
+                     //initialize the object
+                     var dataProd={};
+                     var dataProd2={};
+                     for(var i=0; i<ProdArray.length;i++){
 
-    //   var q=$('#prix').val();
-    //    var b=$('#nombre').val();
-    //    $('#prixtotal').val(q*b);
+                        
+                        dataProd[ProdArray[i].product_name]=null;
+                        dataProd2[ProdArray[i].product_name]=ProdArray[i];
+                     }
 
-    //  });
-});
+                     console.log("object")
+                     console.log(dataProd)
+                     console.log("object2")
+                     console.log(dataProd2)
 
-// $(document).ready(function(e){
+                     $('input#name').autocomplete({
+                        data :dataProd,
+                        //callback for when autocomplete shows
+                    onAutocomplete:function(reqdata){
+                            console.log(reqdata)
+                            
+                            $('#fabricant').val(dataProd2[reqdata]["manufacturer_name"]);
+                           
+  
+  
+                        //      var price=$('#price').val(dataProd2[reqdata]["price"]);
+                        //    var converted =parseInt(price)
+                        //      console.log( isNaN(price))
+                        //     console.log( price)
+                        // var sum 
+                            // console.log($('#price').val()*3);
+                           
+                        
+                    }
+  
+                });
 
-//   // document.addEventListener('DOMContentLoaded', function(){
+        }
 
-//   //   document.getElementById("number").onchange= totalPrice;
-//   //   document.getElementById("prix").onchange = totalPrice;
 
-//   //   //document.getElementById('total')= totalPrice;
-
-//   // });
-//   // var priceInput=addEventListener('change',totalPrice);
-//   // var numberInput=addEventListener('change',totalPrice);
-
-//   // function  totalPrice(e){
-//   //   var number=$('prix').val();
-//   //  console.log(number);
-//   //   //  var priceInput=parsefloat(document.getElementById('prix').value)||0;
-//   //   //  alert(priceInput);
-//   //   // var produitPieces=parsefloat(document.getElementById('number').value)||0;
-//   //   //var totalPrice=parsefloat(document.getElementById('total').value)||0;
-//   //   // console.log(prixunitaire);
-//   //   //var finalprice= prixunitaire* produitPieces ;
-//   //   //document.getElementById('total').value=finalprice;
-//   //   //return finalprice;
-//   //   //console.log(finalprice);
-
-//   // }
-//   $(function () {
-//     var date = new Date();
-//     var today = new Date(date.getFullYear(), date.getMonth(), date.getDate());
-//     $('#date_picker').datetimepicker({
-//        minDate: today
-//     });
-//  });
-
-//   $("input[type='number']").on('change', function(){
-
-//    var q=$('#prix').val();
-//    var b=$('#nomnbre').val();
-//     $('#total').val(q*b);
-
-//   })
-
-// $('#add').click(function(e){
-//   e.preventDefault();
-//     var nom=$('#nom').val();
-//     var fabricant=$('#fabricant').val();
-//     var prix=$('#prix').val();
-//     var nomnbre=$('#nomnbre').val();
-//     var total=$('#total').val();
-//     var date=$('#date').val();
-//     var mesure=$('#mesure').val();
-//     var quantity=$('#quantity').val();
-//     var comment=$('#comment').val();
-
-//     var text=$('table tr').val();
-
-//     if(!$('#nom').val() || !$('#fabricant').val() || !$('#prix').val() || !$('#nomnbre').val() ||!$('#total').val() || !$('#date').val() || !$('#mesure').val() || !$('#quantity').val() || !$('#comment').val()){
-
-//       alert('completer toutes les données')
-
-//     }else
-
-//       {
-
-//     $('#mytable tbody').append(
-//       "<tr><td name='nom[]'>"+nom+
-//       "</td><td name='fabricant[]'>"+fabricant+
-//       "</td><td name='[]'>"+prix+
-//       "</td><td name='nomnbre[]'>"+nomnbre+
-//       "</td><td name='total[]'>"+total+
-//       "</td><td name='date[]'>"+date+
-//       "</td><td name='mesure[]'>"+mesure+
-//       "</td><td name='quantity[]'>"+quantity+
-//       "</td><td name='comment[]'>"+comment+
-//       "</td><td>"+"<button class='btn btn-danger'id='remove_item_btn'  type='button' name='button'>supprimé</button>"
-//       +"</td></tr>")
-
-//       $('#nom').val('');
-//       $('#fabricant').val('');
-//       $('#prix').val('');
-//       $('#nomnbre').val('');
-//       $('#total').val('');
-//       $('#date').val('');
-//       $('#mesure').val('');
-//       $('#quantity').val('');
-//       $('#comment').val('');
-
-//     }
-
-//     var seen = {};
-// $('table tr').each(function() {
-//   var txt = $(this).text();
-//   if (seen[txt])
-//     $(this).remove();
-//   else
-//     seen[txt] = true;
-// });
-
-// });
-
-// $(document).on('click','#remove_item_btn', function(e){
-//   e.preventDefault();
-//   let row_item=$(this).parent().parent();
-//   $(row_item).remove();
-// })
-
-// });
+        })
+               
+})

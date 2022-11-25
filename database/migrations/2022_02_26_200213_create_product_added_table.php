@@ -20,7 +20,6 @@ class CreateProductAddedTable extends Migration
             $table->integer('stock_id');
             $table->integer('price');
             $table->integer('number');
-            $table->integer('remaining');
             $table->integer('prixtotal');
             $table->string('dateExpiration');
             $table->string('comment');

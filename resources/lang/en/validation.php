@@ -46,7 +46,7 @@ return [
     'email' => 'The :attribute must be a valid email address.',
     'ends_with' => 'The :attribute must end with one of the following: :values.',
     'enum' => 'The selected :attribute is invalid.',
-    'exists' => 'The selected :attribute is invalid.',
+    'exists' => 'Le produit selectionné est invalide.',
     'file' => 'The :attribute must be a file.',
     'filled' => 'The :attribute field must have a value.',
     'gt' => [
@@ -76,7 +76,7 @@ return [
         'array' => 'The :attribute must have less than :value items.',
     ],
     'lte' => [
-        'numeric' => 'The :attribute must be less than or equal to :value.',
+        'numeric' => 'Le nombre doit être inférieur ou égal à :value.',
         'file' => 'The :attribute must be less than or equal to :value kilobytes.',
         'string' => 'The :attribute must be less than or equal to :value characters.',
         'array' => 'The :attribute must not have more than :value items.',

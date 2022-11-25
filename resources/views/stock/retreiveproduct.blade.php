@@ -16,6 +16,7 @@
 <script src="{{ asset('js/retreiveproduct.js') }}"></script>
 <script src="{{ asset('jqueryui/jquery-ui.js') }}"></script>
 
+<title>Stock | Rétrait</title>
 
 <div class="container">
 
@@ -91,13 +92,20 @@
 
             </div>
 
-            <div class="form-group " >  
+            <div class="form-group " 
+            >  
               <label for="">Déstination</label>
-              <select name="destination" id="" class="form-control " style="width: 70%;">
-                <option >---</option>
-                <option value="Pharmacie">Pharmacie</option>
-                <option value="Autre">Autre</option>
+              <select name="destination" id="destination" class="form-control input-lg dynamic" style="width: 70%;">
+              
+              <option >---</option>
+              @foreach ( $pharmacy as $row )
+              <option value="{{$row->id}}">{{$row->name}}</option>
+              @endforeach
+    
+                <option value="0">--Autre--</option>
+              
               </select><br> 
+             
               <span style="color: red;">
               @error('destination')
                   {{$message}}
@@ -106,7 +114,11 @@
               
             </div>
 
+          
+            
+            
 
+           
             <div class="form-group col-md-4">
               <label for="">comment</label>
               <textarea name="comment" id="comment"class="form-control " clo rows="6"></textarea><br>

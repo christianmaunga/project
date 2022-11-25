@@ -23,17 +23,6 @@ Route::get('/', function () {
 Auth::routes();
 
 
-// //logins forms
-// Route::get('/admin/login',[App\Http\Controllers\Auth\AdminLoginConTroller::class,'showLoginForm'])->name('admin.login');
-//Route::get('/stock/login',[App\Http\Controllers\Auth\StockLoginController::class,'showLoginForm'])->name('stock.login');
-//Route::get('/pharma/login',[App\Http\Controllers\Auth\PharmaLoginController::class,'showLoginForm'])->name('pharma.login');
-// Route::get('/poulailler/login',[App\Http\Controllers\Auth\PoulaillerLoginController::class,'showLoginForm'])->name('poulailler.login');
-
-
-// //submit forms
-// Route::post('/admin/login',[App\Http\Controllers\Auth\AdminLoginConTroller::class,'Login'])->name('admin.login.submit');
-
-
 
 
 
@@ -68,6 +57,9 @@ Route::prefix('/stock')->group(function(){
         Route::get('/addedProduct',[App\Http\Controllers\StockController::class,'AddedData'])->name('stock.AddedData');
         Route::get('/retrievedProduct',[App\Http\Controllers\StockController::class,'RetreivedData'])->name('stock.RetreivedData');
         Route::get('/historic/{id}',[App\Http\Controllers\StockController::class,'historicAdded'])->name('stock.historic');
+        Route::post('/editprice/{id}',[App\Http\Controllers\StockController::class,'editPrice'])->name('stock.editprice');
+        Route::get('/searchProductName',[App\Http\Controllers\StockController::class,'searchProductName'])->name('stock.productName');   
+        Route::get('/transferspecificproduct/{date}',[\App\Http\Controllers\StockController::class,'ShowTransferSpecificProduct'])->name('stock.transfertSpecific');     
 
 });
 
@@ -77,8 +69,10 @@ Route::prefix('/pharma')->group(function(){
         Route::get('/login',[App\Http\Controllers\Auth\PharmaLoginController::class,'showLoginForm'])->name('pharma.login');
         Route::post('/login',[App\Http\Controllers\Auth\PharmaLoginController::class,'Login'])->name('pharma.login.submit');
         Route::get('/',[App\Http\Controllers\PharmaController::class, 'index'])->name('pharma.dashboard');
-        
-
+        Route::get('/sell',[App\Http\Controllers\PharmaController::class, 'sellingView'])->name('pharma.sell');
+        Route::get('/stock',[App\Http\Controllers\PharmaController::class,'stockView'])->name('pharma.stock');
+        Route::get('/searshProduct/{pharmaId}',[App\Http\Controllers\PharmaController::class,'serachproduct'])->name('pharma.searchproduct');
+        Route::post('/submitselling',[App\Http\Controllers\PharmaController::class,'submitsell'])->name('pharma.sellProduct');
 });
 
 //poulailler

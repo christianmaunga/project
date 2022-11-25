@@ -41,8 +41,8 @@ class AdminController extends Controller
         
 
         $request->validate([
-                'username'=>'required',
-                'email'=>'required|email|unique:stockaccounts,email|min:5|max:30',
+                'username'=>'required|unique:pharmas,name',
+                'email'=>'required|email|unique:pharmas,email|min:5|max:30',
                 'localization'=>'required',
                 'typeaccount'=>'required',
                 'password'=>'required|min:5|max:30',
@@ -64,7 +64,7 @@ class AdminController extends Controller
                 $save=$stock->save();
 
                     if($save){
-                        return redirect()->route('admin.dashboard')->with('message','Enregistrement éffectuer');
+                        return redirect()->route('admin.newAccount')->with('message','Enregistrement éffectuer');
                     }else
                         {
                             return redirect()->back()->with('fail','Échec');
@@ -84,7 +84,7 @@ class AdminController extends Controller
                     $save=$pharma->save();
 
                         if($save){
-                            return redirect()->route('admin.dashboard')->with('message','Enregistrement éffectuer');
+                            return redirect()->route('admin.newAccount')->with('message','Enregistrement éffectuer');
                         }else
                             {
                                 return redirect()->back()->with('fail','Échec');
@@ -104,7 +104,7 @@ class AdminController extends Controller
                     $save=$poulailler->save();
 
                         if($save){
-                            return redirect()->route('admin.dashboard')->with('message','Enregistrement éffectuer');
+                            return redirect()->route('admin.newAccount')->with('message','Enregistrement éffectuer');
                         }else
                             {
                                 return redirect()->back()->with('fail','Échec');

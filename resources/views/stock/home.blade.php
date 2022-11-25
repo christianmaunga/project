@@ -11,8 +11,15 @@ table {
   border-radius: 10px;
 }
 
-</style>
+a{
+  text-decoration: none;
+}
+a:hover {
+  text-decoration:underline;
+}
 
+</style>
+<title>Stock | Accueil</title>
 <div class="container">
    @if(session()->has('message'))
 
@@ -23,15 +30,15 @@ table {
   @endif
 
 
-<a href="{{Route('stock.addNewproduct')}}" class="btn btn-primary">Ajouter produit</a>
-<a href="{{Route('stock.retreiveProductView')}}" class="btn btn-danger" style="float: right;"> retirer produit</a>
+<a href="{{Route('stock.addNewproduct')}}" class="btn btn-primary" style="font-size: 20px;" >Ajouter produit</a>
+<a href="{{Route('stock.retreiveProductView')}}" class="btn btn-danger" style="float: right; font-size: 20px;"> retirer produit</a>
 
 <div class="row" style="margin-top: 50px;">
 
     <div class="col-sm">
      
 
-      <h2><p>Produits récement ajouter | <a href="{{Route('stock.AddedData')}}">voir plus...</a></p></h2>
+      <h2><p>Produits récement ajouter | <a  href="{{Route('stock.AddedData')}}">voir plus...</a></p></h2>
      <table class="table table-striped" style="background-color:rgb(146, 247, 247);">
     
        <thead>
@@ -63,7 +70,7 @@ table {
     </div>
     <div class="col-sm">
 
-      <h2><p>Produit récement retirer | <a href="{{Route('stock.RetreivedData')}}">voir plus...</a></p></h2>
+      <h2><p>Produit récement retirer | <a class="link" href="{{Route('stock.RetreivedData')}}">voir plus...</a></p></h2>
     
     <table class="table table-striped" style="background-color:#fc8181;">
       <thead>

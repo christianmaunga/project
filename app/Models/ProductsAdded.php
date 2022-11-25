@@ -16,7 +16,6 @@ class ProductsAdded extends Model
         'stock_id',
         'price',
         'nombre',
-        'remaining',
         'prixtotal',
         'dateExpiration',
         'mesure',
