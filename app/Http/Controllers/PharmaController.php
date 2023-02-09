@@ -34,7 +34,7 @@ class PharmaController extends Controller
                             FROM table_of_products,sold_products
                             WHERE table_of_products.id=sold_products.product_id
                             AND sold_products.pharma_id='$pharma_id'
-                            ORDER BY  sold_products.created_at DESC LiMIT 11 ");
+                            ORDER BY  sold_products.created_at DESC LiMIT 10 ");
         return view('pharma/home',['query'=>$query]);
     }
 
@@ -48,7 +48,7 @@ class PharmaController extends Controller
         $pharma_id=Auth::id();
 
         
-        $retrieved=DB::select("SELECT table_of_products.product_name, pharma_counters.number 
+        $retrieved=DB::select("SELECT table_of_products.product_name, pharma_counters.number, pharma_counters.product_id
         FROM table_of_products, pharma_counters 
         WHERE table_of_products.id=pharma_counters.product_id
         AND pharma_counters.pharma_id ='$pharma_id'");
@@ -111,9 +111,58 @@ class PharmaController extends Controller
             return redirect()->back()->with('message','error');
         }
 
+    }
+
+    public function salesview(){
+
+          $user=Auth::id();
+    
+                
+                $dates = DB::table('sold_products')
+                            ->where('pharma_id',$user)
+                            ->select(DB::raw('DATE_FORMAT(created_at, "%d %M %Y") as days_formatted'))
+                            ->distinct()
+                            ->orderBy('created_at', 'DESC')
+                            ->get();
+
+              return view('/pharma/sales',['dates'=>$dates]);
+       
+    }
+
+
+    public function daySales($date){
+
+        $newdate=date("Y-m-d", strtotime($date));
+        $pharma_id=Auth::id();
         
+        $query=DB::select("SELECT table_of_products.product_name, sold_products.number, sold_products.price,  sold_products.totalprice,sold_products.created_at 
+        FROM table_of_products, sold_products
+        WHERE DATE_FORMAT(sold_products.created_at, '%Y-%m-%d') ='$newdate'
+        AND table_of_products.id=sold_products.product_id
+        And sold_products.pharma_id='$pharma_id'
+        ORDER BY  created_at DESC ")
+        ;
+        $sum=DB::select("SELECT SUM(totalprice) 
+        FROM sold_products
+        WHERE DATE_FORMAT(created_at, '%Y-%m-%d')='$newdate'
+        And pharma_id='$pharma_id'");
 
+      return view('/pharma/daysales')->with('query',$query)->with('date',$date)->with('sum',$sum);
+      //return $sum;
 
+    }
 
+     public function productDetails($id){
+        $pharma_id=Auth::id();
+        $name=DB::table('table_of_products')
+                ->where('id',$id)
+                ->value('product_name');
+                
+        $query=DB::table("transferred_products")
+                        ->where('product_id',$id)
+                        ->where('destination',$pharma_id)
+                        ->get();
+           // return $name;
+            return view('/pharma/productdetails')->with('name',$name)->with('query',$query);
     }
 }

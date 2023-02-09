@@ -76,8 +76,8 @@
                 </div>
 
                 <div class="form-group">
-                  <p>Libelle</p>
-                  <textarea class="form-control" id="details" rows="3" name="comment" required></textarea> <br>
+                  <!-- <p>Libelle</p> -->
+                  <input  type='hidden' id="details"  value="vente" name="comment" required> <br>
                   @error('details')
                           {{$message}}
                         @enderror

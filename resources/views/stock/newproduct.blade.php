@@ -93,6 +93,23 @@
 
           </div>
 
+          <div class="col-md-3 mb-3">
+            <label for="">Medicament/Outil</label>
+
+                <select name="type"  class="form-control input-lg dynamic"  id="">
+                  <option value="">---</option>
+                    <option value="medicine">Medicament</option>
+                    <option value="tools">Outil</option>
+
+                </select>
+                <span style="color: red;">
+                  @error('type')
+                  {{$message}}
+                  @enderror
+                </span>
+
+          </div>
+
           <div class="col-md-2 mb-3">
 
             <label for="">Date d'expiration</label>
@@ -100,10 +117,12 @@
 
           </div>
 
+          
+
           <div class="col-md-4 mb-3">
 
-          <label for="">Libellé</label>
-          <textarea name="comment" class="form-control"  id="comment"  rows="5"></textarea>
+          <!-- <label for="">Libellé</label> -->
+          <input type="hidden" name="comment" value="nouveau produit" class="form-control"  id="comment"  rows="5"> 
 
           </div>
 

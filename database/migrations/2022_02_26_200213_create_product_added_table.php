@@ -22,6 +22,7 @@ class CreateProductAddedTable extends Migration
             $table->integer('number');
             $table->integer('prixtotal');
             $table->string('dateExpiration');
+            $table->string('type');
             $table->string('comment');
             $table->timestamps();
         });

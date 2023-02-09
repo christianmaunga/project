@@ -120,8 +120,8 @@
 
            
             <div class="form-group col-md-4">
-              <label for="">comment</label>
-              <textarea name="comment" id="comment"class="form-control " clo rows="6"></textarea><br>
+              <!-- <label for="">comment</label> -->
+              <input name="comment" type="hidden" id="comment"class="form-control " value="transfert" clo rows="6"><br>
             </div>
 
             <div class="form-group">

@@ -39,24 +39,39 @@ td{
   </div>
 
   
-  <table>
-    <thead>
-      <th>Date</th>
-    </thead>
-    <?php
+  
 
-    foreach($dates as $row){
-      
-   
-    ?>
-    <tr>
-     <td><a href="{{Route('stock.transfertSpecific',['date'=>$row->days_formatted])}}">Le {{$row->days_formatted}}</a></td>
-     
-  </tr>
-    <?php
-    }
-    ?>
-  </table>
+  <div class="row">
+    <div class="col-sm">
+        <div class="col-sm left" style="width: 50%; float:left;">
+        <table>
+          <thead>
+            <th>Date</th>
+                  </thead>
+            <?php
+
+            foreach($dates as $row){
+              
+          
+                  ?>
+            <tr>
+                <td><a href="{{Route('stock.transfertSpecific',['date'=>$row->days_formatted])}}">Le {{$row->days_formatted}}</a></td>
+            
+            </tr>
+            <?php
+            }
+            ?>
+          </table>          
+
+          </div>
+
+
+        <div class="col-sm right"  ">
+            <h2><p >Pharma</p></h2>    
+        </div>
+    </div>
+  </div>
+
 
 </div>
 

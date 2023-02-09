@@ -20,7 +20,24 @@ a:hover {
 
 </style>
 <title>Stock | Accueil</title>
-<div class="container">
+
+      <?php
+      $counter=0;
+      foreach($count as $rows){
+        $counter++;
+
+      }
+
+      ?>
+
+      <div >
+        <a  href="{{Route('stock.finishedProduct')}}" style="float: right; margin-right:20px; ">stock épuisé(s)<span style="font-size:23px; color:red;  ">{{$counter}}</span></a>
+      </div>
+      
+    
+     
+
+      <br> <br> <div class="container">
    @if(session()->has('message'))
 
             <div class="alert alert-success">
@@ -31,6 +48,7 @@ a:hover {
 
 
 <a href="{{Route('stock.addNewproduct')}}" class="btn btn-primary" style="font-size: 20px;" >Ajouter produit</a>
+
 <a href="{{Route('stock.retreiveProductView')}}" class="btn btn-danger" style="float: right; font-size: 20px;"> retirer produit</a>
 
 <div class="row" style="margin-top: 50px;">

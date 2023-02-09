@@ -3,6 +3,10 @@
 @section('content')
 
 <style>
+  td{
+    font-weight: bold;
+    font-size: 20px;
+  }
   a{
   text-decoration: none;
 }
@@ -37,7 +41,11 @@ a:hover {
     <tr>
 
       <td>{{$row->product_name}}</td>
-      <td>{{$row->totalInStock}}</td>
+      @if($row->totalInStock==0)  
+      <td style="color: red; ">{{$row->totalInStock}}</td>
+      @else
+      <td >{{$row->totalInStock}}</td>
+      @endif
       <td><a href="{{Route('stock.historic',['id' => $row->product_id])}}">historique </a></td>
 
     </tr>
@@ -47,6 +55,18 @@ a:hover {
 
 </table>
 
+
+<div class="row">
+  <div class="col-sm">
+
+  <div class="col-sm left">
+    
+    </div>
+    <div class="col-sm right">
+    
+    </div>
+  </div>
+</div>
 
 </div>
 

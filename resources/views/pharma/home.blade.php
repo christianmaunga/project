@@ -1,16 +1,41 @@
 @extends('layouts.app')
 
 @section('content')
+
+<style>
+  th{
+    font-size: 20px;
+  }
+
+table {
+  
+  border-radius: 10px;
+}
+
+a{
+  text-decoration: none;
+}
+a:hover {
+  text-decoration:underline;
+}
+
+#name{
+    font-weight: bold;
+}
+
+
+</style>
+
 <title>Pharmacie | Accueil</title>
 <div class="container" style="margin-top: 20px;">
 <div class="row">
 <div class="col-sm" style="font-size:20px;">
-<p>Dernieres ventes</p>
-<h2><p> Dérnieres ventes | <a href="">voir plus...</a></p></h2>
+
+<h2><p> Dérnieres ventes | <a href="{{Route('pharma.saleslist')}}">voir plus...</a></p></h2>
 
     <table class="table"  style="width: 80%; ">
         <thead>
-            <th>Nom</th>
+            <th id="name">Nom</th>
             <th>nombre</th>
             <th>prix unitaire</th>
             <th>prix</th>
@@ -21,10 +46,10 @@
 
         ?>
         <tr>
-            <td>{{$row->product_name}}</td>
-            <td>{{$row->number}}</td>
-            <td>{{$row->price}}</td>
-            <td>{{$row->totalprice }}</td>
+            <td id="name">{{$row->product_name}}</td>
+            <td style="text-align:center;">{{$row->number}}</td>
+            <td style="text-align:center;">{{number_format($row->price)}}</td>
+            <td style="text-align:center;">{{number_format($row->totalprice) }}</td>
         </tr>
         <?php
             }

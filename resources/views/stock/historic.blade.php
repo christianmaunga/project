@@ -69,8 +69,8 @@ a:hover {
     <tr>
       <td>{{date('d,M,Y à H:i:s',strtotime($row->created_at))}}</td>
       <td>{{$row->number}}</td>
-      <td>{{$row->price}}</td>
-      <td>{{$row->prixtotal}}</td>
+      <td>{{number_format($row->price)}}</td>
+      <td>{{number_format($row->prixtotal)}}</td>
       <td>{{$row->comment}}</td>
 
     
