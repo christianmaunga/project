@@ -60,7 +60,7 @@
           <div class="col-md-4 mb-3 input-field">
 
               <label for="">Nom</label>
-              <input type="text" name="nom" id='name' class="form-control"  required> 
+              <input type="text" name="nom" id='name' class="form-control"  autofocus="autofocus" required> 
 
           </div>
 

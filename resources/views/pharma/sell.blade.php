@@ -31,15 +31,16 @@
         <div>
         <h3>Vendre Produits</h3 >
         </div>
-
+      <div class="row">
+        <div class="col-sm">
 
       <form action="{{Route('pharma.sellProduct')}}" method="POST" autocomplete="off">
       @csrf
-        <div class="row ">
+        <div class="row " style="width: 50%; float:left;">
           
                 <div class="form-group  input-field">
                   <p>Nom</p> 
-                  <input type="text" name="product_name" id="ProductName" class="form-control" required>
+                  <input type="text" name="product_name" id="ProductName" class="form-control" autofocus="autofocus" required>
 
                   <span style="color: red;">
                         @error('product_name')
@@ -83,6 +84,7 @@
                         @enderror
                 </div>
 
+              
                 <div class="">
                 <button class="btn btn-success" style="float:right; font-size: 30px;">Vendre</button>
                 </div>
@@ -90,7 +92,29 @@
                 <input type="hidden" name="product_id" id="product_id">
         </div>
 
-        </form>
+        
+        </div>
+
+        <div class="col-sm">
+          <div class="" style=" width:50%; ">
+
+              <button class="btn btn-success" id="add"  style=" font-size: 30px; background-color:green; width:60%; float:left;">Ajouter</button>
+
+           <table>
+
+              <tr>
+                <th>Nom</th>
+                <th>Nombre</th>
+                <th>unitaire</th>
+                <th>prix total</th>
+              </tr>
+              <tbody id="result"></tbody>
+
+              </table>
+              </form>
+          </div>
+        </div>
+        </div>
 
     </div>
     
