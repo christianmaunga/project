@@ -6,9 +6,12 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Validator;
+
 use App\Models\soldProduct;
 use App\Models\tableOfProducts;
 use Illuminate\Support\Facades\Redirect;
+use Mockery\Matcher\Type;
 
 class PharmaController extends Controller
 {
@@ -67,49 +70,65 @@ class PharmaController extends Controller
     }
 
     public function submitsell(Request $request){
-        $user_id=Auth::id();
         
-        $Instock = DB::table('pharma_counters')
-                        ->where('product_id', $request->product_id)
-                        ->where('stock_id',  $user_id)
-                        ->value('number');
+            $data = $request->input('selling');
+            $pharma_id=Auth::id();
+           
+               
+            $validatedData = [];
+            
+           foreach($data as $row){
+              
+            $Instock=[];
+                $Instock = DB::table('pharma_counters')
+                ->where('product_id', $row['product_id'])
+                ->where('stock_id',  $pharma_id)
+                ->value('number');
+
+             
+                $validatedRow = Validator::make($row, [
+                    'product_name'=>'required|exists:table_of_products',
+                    'number' => 'required|lte:'.(int)$Instock,
+                    'price'=>'required',
+                    'totalprice'=>'required',
+                    'product_id'=>'required'
         
-        $request->validate([
-            'product_name'=>'required|exists:table_of_products',
-            'number'=>'required|lte:'.(int)$Instock,
-            'comment'=>'required',
-        ]);
+                  ]);
 
-        $sold_product=new soldProduct();
-
-        $pharma_id_=Auth::id();
-
- 
-        $sold_product->pharma_id=$pharma_id_;
-        $sold_product->product_id=$request->product_id;
-        $sold_product->number=$request->number;
-        $sold_product->price=$request->price;
-        $sold_product->totalprice=$request->totalprice;
-        $sold_product->status=true;
-        $sold_product->comment=$request->comment;
-
-        $save= $sold_product->save();
-        $new_stock=$Instock - $request->number;
-        $update=DB::table('pharma_counters')
-                    ->where('product_id', $request->product_id)
-                    ->where('stock_id',  $user_id)
-                    ->update(['number'=>$new_stock]);
-        $product_name=DB::table('table_of_products')
-                                ->where('id',$request->product_id)
-                                ->value('product_name');
+                  if ($validatedRow->fails()) {
                     
+                    return redirect()->back()->withErrors($validatedRow)->withInput();
 
-        if($save){
-                return redirect( )->back()->with('message','Vente de(s) '.$request->number.' '.$product_name.' enregistré');
+                  }
+
+                  $validatedData[] = $row;
+
                 
-        }else{
-            return redirect()->back()->with('message','error');
-        }
+                $sold_product=new soldProduct();
+
+                $sold_product->pharma_id=$pharma_id;
+                $sold_product->product_id=$row['product_id'];
+                $sold_product->number=$row['number'];
+                $sold_product->price=$row['price'];
+                $sold_product->totalprice=$row['totalprice'];
+                $sold_product->status=1;
+                $sold_product->comment='vente';
+                $save = $sold_product->save();
+
+                if($save){
+
+                    return redirect( )->back()->with('message','Vente enregistré');
+                        
+                }else{
+                    return redirect()->back()->with('message','error');
+                }
+
+                
+
+
+
+                    }
+                  
 
     }
 

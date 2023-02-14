@@ -87,20 +87,20 @@ Route::prefix('/pharma')->group(function(){
 //poulailler
 Route::prefix('/poulailler')->group(function(){
 
-        Route::get('/login',[App\Http\Controllers\Auth\PoulaillerLoginController::class,'showLoginForm'])->name('poulailler.login');
-        Route::post('/login',[App\Http\Controllers\Auth\PoulaillerLoginController::class,'Login'])->name('poulailler.login.submit');
-        Route::get('/',[App\Http\Controllers\PoulaillerController::class, 'index'])->name('poulailler.dashboard');
-        Route::get('/newStock',[App\Http\Controllers\PoulaillerController::class, 'newstock'])->name('poulailler.newstock');
-        Route::post('/newStock',[App\Http\Controllers\PoulaillerController::class, 'AddStockPoulailler'])->name('addpoulailler');
-        Route::get('/poulaillerSpecificStock/{id}',[App\Http\Controllers\PoulaillerController::class,'poulaillerSpecificStock'])->name('getstockview');
-        Route::get('/vente/{id}',[App\Http\controllers\PoulaillerController::class,'venteView'])->name('venteView');
-        Route::post('/vente',[App\Http\Controllers\PoulaillerController::class,'vente'])->name('ventePost');
-        Route::get('/retreive/{id}',[App\Http\Controllers\PoulaillerController::class,'retreive'])->name('retreive');
-        Route::post('/retreive',[App\Http\Controllers\PoulaillerController::class,'retreivepostData'])->name('poulailler.retreive');
-        Route::get('/vente/{id}',[App\Http\Controllers\PoulaillerController::class,'getVenteForm'])->name('poulailler.vente');
-        Route::get('/retreivehistory/{id}',[App\Http\Controllers\PoulaillerController::class,'historyView'])->name('poulailler.retreivehistory');
-        Route::get('/charge/{id}',[App\Http\Controllers\PoulaillerController::class,'getChargeview'])->name('poulailler.charge');
-        Route::post('/charge/{id}',[App\Http\Controllers\PoulaillerController::class,'insertcharges'])->name('poulailler.insertcharges');
-        Route::get('/chargehistoric/{id}',[App\Http\Controllers\PoulaillerController::class,'getchargesList'])->name('poulailler.Chargehistoric');
+        Route::get('/login',[\App\Http\Controllers\Auth\PoulaillerLoginController::class,'showLoginForm'])->name('poulailler.login');
+        Route::post('/login',[\App\Http\Controllers\Auth\PoulaillerLoginController::class,'Login'])->name('poulailler.login.submit');
+        Route::get('/',[\App\Http\Controllers\PoulaillerController::class, 'index'])->name('poulailler.dashboard');
+        Route::get('/newStock',[\App\Http\Controllers\PoulaillerController::class, 'newstock'])->name('poulailler.newstock');
+        Route::post('/newStock',[\App\Http\Controllers\PoulaillerController::class, 'AddStockPoulailler'])->name('addpoulailler');
+        Route::get('/poulaillerSpecificStock/{id}',[\App\Http\Controllers\PoulaillerController::class,'poulaillerSpecificStock'])->name('getstockview');
+        Route::get('/vente/{id}',[\App\Http\controllers\PoulaillerController::class,'venteView'])->name('venteView');
+        Route::post('/vente',[\App\Http\Controllers\PoulaillerController::class,'vente'])->name('ventePost');
+        Route::get('/retreive/{id}',[\App\Http\Controllers\PoulaillerController::class,'retreive'])->name('retreive');
+        Route::post('/retreive',[\App\Http\Controllers\PoulaillerController::class,'retreivepostData'])->name('poulailler.retreive');
+        Route::get('/vente/{id}',[\App\Http\Controllers\PoulaillerController::class,'getVenteForm'])->name('poulailler.vente');
+        Route::get('/retreivehistory/{id}',[\App\Http\Controllers\PoulaillerController::class,'historyView'])->name('poulailler.retreivehistory');
+        Route::get('/charge/{id}',[\App\Http\Controllers\PoulaillerController::class,'getChargeview'])->name('poulailler.charge');
+        Route::post('/charge/{id}',[\App\Http\Controllers\PoulaillerController::class,'insertcharges'])->name('poulailler.insertcharges');
+        Route::get('/chargehistoric/{id}',[\App\Http\Controllers\PoulaillerController::class,'getchargesList'])->name('poulailler.Chargehistoric');
        
 });

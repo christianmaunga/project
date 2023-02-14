@@ -76,16 +76,19 @@ $(document).on('click','#add',function(e){
       var number =$("#boughtnumber").val()
       var selling_price =$("#selling_price").val()
       var total_price =$("#total_price").val()
+      var product_id =$("#product_id").val()
 
       if(name   == "" || number  =="" || selling_price == "" ||total_price ==""){
         alert('Ajouter des produits');
       }else{
 
-        var html="";
+        
+        $('#result').append("<tr><td id='td_name'>"+name+"</td><td id='td_number'>"+number+"</td><td id='td_selling_price'>"+selling_price+"</td><td id='td_total_price'>"+total_price+"</td><td id='product_id' style='display:none;'>"+product_id+"</td></tr>")
+        // var html="";
 		
-          html="<tr><td>"+name+"</td><td>"+number+"</td><td>"+selling_price+"</td><td>"+total_price+"</td></tr>";
+        //   html="<tr><td id='td_name'>"+name+"</td><td id='td_number'>"+number+"</td><td id='td_selling_price'>"+selling_price+"</td><td id='td_total_price'>"+total_price+"</td></tr>";
           
-          document.getElementById('result').innerHTML+=html;
+        //   document.getElementById('result').innerHTML+=html;
 
 
       $("#ProductName").val("");
@@ -100,6 +103,60 @@ $(document).on('click','#add',function(e){
     
       
 })
+
+$('#sell_product').click(function(){
+  
+
+  var data=[];
+
+  $('#table tbody tr').each(function(){
+
+      var td_names = $(this).find("td:first").text();
+      var td_numbers = $(this).find("td:nth-child(2)").text();
+      var td_selling_prices = $(this).find("td:nth-child(3)").text();
+      var td_total_prices = $(this).find("td:nth-child(4)").text();
+      var td_product_id=$(this).find("td:last").text();
+      if (td_names && td_numbers && td_selling_prices && td_total_prices && td_product_id) {
+
+      data.push({product_name: td_names, number: td_numbers, price : td_selling_prices, totalprice: td_total_prices, product_id: td_product_id});
+      }
+  })
+  console.log(data);
+
+    $.ajaxSetup({
+          headers: {
+            'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
+          }
+          
+        });
+
+        $.ajax({
+          url:'/pharma/submitselling',
+          type:'post',
+        
+          data:{selling:data},
+          success:function(data){
+            console.log(data);
+            if(!data.success){
+
+              if (!data.success) {
+                console.log(data.error?.message);
+                // Display the error messages on the page
+                var errors = data.error;
+                for (var error in errors) {
+                  console.log(errors[error][0]);
+                  // e.g. $("#error-container").append("<p>" + errors[error] + "</p>");
+                }
+              } else {
+                console.log('Validation succeeded');
+                // Do something else if the validation succeeded
+              }
+
+            }
+          }
+        })  
+
+        })
 
 });
 

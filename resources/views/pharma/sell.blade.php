@@ -86,7 +86,8 @@
 
               
                 <div class="">
-                <button class="btn btn-success" style="float:right; font-size: 30px;">Vendre</button>
+                
+                <button class="btn btn-success" id="add"  style=" font-size: 30px; background-color:green; float:left;">Ajouter</button>
                 </div>
                 <input type="hidden" id="pharmaId" value="{{Auth::id()}}" >
                 <input type="hidden" name="product_id" id="product_id">
@@ -96,22 +97,32 @@
         </div>
 
         <div class="col-sm">
-          <div class="" style=" width:50%; ">
+          <div class="" style=" width:70%; ">
 
-              <button class="btn btn-success" id="add"  style=" font-size: 30px; background-color:green; width:60%; float:left;">Ajouter</button>
+          @if ($errors->any())
+              <div class="alert alert-danger">
+                  <ul>
+                      @foreach ($errors->all() as $error)
+                          <li>{{ $error }}</li>
+                      @endforeach
+                  </ul>
+              </div>
+           @endif      
 
-           <table>
+           <table class="table" id="table">
 
               <tr>
-                <th>Nom</th>
-                <th>Nombre</th>
-                <th>unitaire</th>
-                <th>prix total</th>
+                <th scope="col">Nom</th>
+                <th scope="col">Nombre</th>
+                <th scope="col">unitaire</th>
+                <th scope="col">prix total</th>
               </tr>
               <tbody id="result"></tbody>
 
               </table>
               </form>
+              <button class="btn btn-success" id="sell_product" style="float:right; font-size: 30px;">Vendre</button>
+              
           </div>
         </div>
         </div>
